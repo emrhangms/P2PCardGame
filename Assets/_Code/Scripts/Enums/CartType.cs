@@ -2,5 +2,9 @@
 {
     Sword,
     Shield,
-    Castle
+    Castle,
+    Snow,
+    Fog,
+    Rain,
+    Sunny
 }

@@ -9,34 +9,35 @@ public class CardClose : MonoBehaviour
 {
     [Header("Card Values")]
     public int id;
-    public new TextMeshProUGUI name;
-    public TextMeshProUGUI description;
-    public TextMeshProUGUI damage;
+    public TextMeshProUGUI nameTXT;
+    public TextMeshProUGUI descriptionTXT;
+    public TextMeshProUGUI damageTXT;
     public Image image;
     public CardType cardType;
     public List<Image> imageCardType = new List<Image>();
+
+    public CardManager cardManager;
 
     public Vector3 firstPosition;
 
     void Start()
     {
+        cardManager = GameManager.ins.cardManager;
         firstPosition = transform.position;
+        transform.localScale = Vector3.zero;
     }
 
-    void Update()
+    public void InitCardClose(int id, GameObject selectecCard)
     {
+        transform.localScale = Vector3.one;
 
-    }
+        cardManager.selectedCard = selectecCard;
 
-    public void InitCardClose(int id)
-    {
-        gameObject.SetActive(true);
-
-        var cards = GameManager.ins.cardManager.cards;
+        var cards = cardManager.cards;
         this.id = id;
-        this.name.text = cards[id].name;
-        this.description.text = cards[id].description;
-        this.damage.text = cards[id].damage.ToString();
+        this.nameTXT.text = cards[id].name;
+        this.descriptionTXT.text = cards[id].description;
+        this.damageTXT.text = cards[id].damage.ToString();
         this.image.sprite = cards[id].image;
         this.cardType = cards[id].cardType;
 
@@ -62,25 +63,29 @@ public class CardClose : MonoBehaviour
 
     public void PlaceCard()
     {
-        GameObject cardContainer = GameManager.ins.boardManager.GetCardContainer(id, 0);
+        CardContainer cardContainer = GameManager.ins.boardManager.GetCardContainer(id, 0);
+
+        Vector3 cardPosition = cardContainer.container.transform.position;
 
         DOTween.Sequence()
-            .Append(transform.DOMove(cardContainer.transform.position, 0.5f, false))
+            .Append(transform.DOMove(cardPosition, 0.5f, false))
             .Join(transform.DOScale(new Vector3(0.28f, 0.28f, 0.28f), 0.5f))
             .AppendCallback(() =>
             {
                 GameManager.ins.boardManager.CreateCard(cardContainer, id);
-                ResetPositionAndScale();
-                gameObject.SetActive(false);
-                //TODO : DELETE CARDS FROM DECK
-                //TODO : UPDATE CONTAINER DAMAGE
-                //TODO : ADD TO CONTAINER LIST
+
+                cardManager.activeDeckCards.Remove(cardManager.selectedCard);
+                Destroy(cardManager.selectedCard.gameObject);
+
+                cardManager.selectedCard = null;
+            
+                ResetCloseCard();
             });
     }
 
-    public void ResetPositionAndScale()
+    public void ResetCloseCard()
     {
         transform.position = firstPosition;
-        transform.localScale = Vector3.one;
+        transform.localScale = Vector3.zero;
     }
 }

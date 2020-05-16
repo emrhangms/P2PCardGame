@@ -7,72 +7,110 @@ public class BoardManager : MonoBehaviour
 {
 
     [Header("Player 1 Board")]
-    public GameObject swordP1;
-    public GameObject shieldP1;
-    public GameObject castleP1;
+    public CardContainer swordP_1;
+    public CardContainer shieldP_1;
+    public CardContainer castleP_1;
 
     [Header("Player 2 Board")]
-    public GameObject swordP2;
-    public GameObject shieldP2;
-    public GameObject castleP2;
+    public CardContainer swordP_2;
+    public CardContainer shieldP_2;
+    public CardContainer castleP_2;
 
     [Header("Weather Board")]
-    public GameObject weather;
+    public WeatherCardContainer weather;
 
-    public GameObject prefCard;
+    [Header("Players Damage")]
+    public int damagePlayer_1;
+    public int damagePlayer_2;
 
-    void Start()
+    public void CreateCard(CardContainer container, int id)
     {
-        prefCard = GameManager.ins.cardManager.PrefCard;
+        container.CreateCard(id);
     }
 
-    void Update()
+    public void CalculateOvarall()
     {
-
+        damagePlayer_1 = swordP_1.containerDamage + shieldP_1.containerDamage + castleP_1.containerDamage;
+        damagePlayer_2 = swordP_2.containerDamage + shieldP_2.containerDamage + castleP_2.containerDamage;
     }
 
-    public void CreateCard(GameObject container, int id)
+    public CardContainer GetCardContainer(int id, int playerID)
     {
-        GameObject card = Instantiate(prefCard, container.transform);
-        card.GetComponent<CardButton>().InitCard(id);
-    }
+        CardContainer container = swordP_1;
 
-    public GameObject GetCardContainer(int id, int playerID)
-    {
-        GameObject container = gameObject;
+        CardType cardType = GameManager.ins.cardManager.cards[id].cardType;
+
+        if (cardType == CardType.Snow || cardType == CardType.Fog || cardType == CardType.Rain || cardType == CardType.Sunny)
+        {
+            return weather;
+        }
 
         if (playerID == 0)
         {
-            switch (GameManager.ins.cardManager.cards[id].cardType)
+            switch (cardType)
             {
                 case CardType.Sword:
-                    container = swordP1;
+                    container = swordP_1;
                     break;
                 case CardType.Shield:
-                    container = shieldP1;
+                    container = shieldP_1;
                     break;
                 case CardType.Castle:
-                    container = castleP1;
+                    container = castleP_1;
                     break;
             }
         }
-        else
+        else if (playerID == 1)
         {
-            switch (GameManager.ins.cardManager.cards[id].cardType)
+            switch (cardType)
             {
                 case CardType.Sword:
-                    container = swordP2;
+                    container = swordP_2;
                     break;
                 case CardType.Shield:
-                    container = shieldP2;
+                    container = shieldP_2;
                     break;
                 case CardType.Castle:
-                    container = castleP2;
+                    container = castleP_2;
                     break;
             }
         }
 
         return container;
+    }
+
+    public void ChangeWeather(CardType cardType)
+    {
+        if (cardType == CardType.Snow)
+        {
+            swordP_1.SetWeatherEffect(true);
+            swordP_2.SetWeatherEffect(true);
+        }
+        else if (cardType == CardType.Fog)
+        {
+            shieldP_1.SetWeatherEffect(true);
+            shieldP_2.SetWeatherEffect(true);
+        }
+        else if (cardType == CardType.Rain)
+        {
+            castleP_1.SetWeatherEffect(true);
+            castleP_2.SetWeatherEffect(true);
+        }
+        else if (cardType == CardType.Sunny)
+        {
+            RemoveAllWeatherEffects();
+            weather.RemoveCards();
+        }
+    }
+
+    public void RemoveAllWeatherEffects()
+    {
+        swordP_1.SetWeatherEffect(false);
+        swordP_2.SetWeatherEffect(false);
+        shieldP_1.SetWeatherEffect(false);
+        shieldP_2.SetWeatherEffect(false);
+        castleP_1.SetWeatherEffect(false);
+        castleP_2.SetWeatherEffect(false);
     }
 
 }

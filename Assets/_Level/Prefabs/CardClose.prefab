@@ -1178,15 +1178,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  name: {fileID: 6206832169037557908}
-  description: {fileID: 3702773304634266071}
-  damage: {fileID: 7996738699426782797}
+  nameTXT: {fileID: 6206832169037557908}
+  descriptionTXT: {fileID: 3702773304634266071}
+  damageTXT: {fileID: 7996738699426782797}
   image: {fileID: 8341738347019070702}
   cardType: 0
   imageCardType:
   - {fileID: 2025227367}
   - {fileID: 87156856}
   - {fileID: 372644964}
+  cardManager: {fileID: 0}
+  firstPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8341738348953935739
 GameObject:
   m_ObjectHideFlags: 0

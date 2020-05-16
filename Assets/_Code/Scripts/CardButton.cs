@@ -8,35 +8,27 @@ public class CardButton : MonoBehaviour
 {
     [Header("Card Values")]
     public int id;
-    public new TextMeshProUGUI name;
-    public TextMeshProUGUI description;
-    public TextMeshProUGUI damage;
+    public int damage;
+
+    public TextMeshProUGUI nameTXT;
+    public TextMeshProUGUI descriptionTXT;
+    public TextMeshProUGUI damageTXT;
     public Image image;
     public CardType cardType;
     public List<Image> imageCardType = new List<Image>();
-
-    //TODO : CREATE INACTIVE CARDS
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-
-    }
 
     public void InitCard(int id)
     {
         var cards = GameManager.ins.cardManager.cards;
         this.id = id;
-        this.name.text = cards[id].name;
-        this.description.text = cards[id].description;
-        this.damage.text = cards[id].damage.ToString();
+        this.damage = cards[id].damage;
+        this.nameTXT.text = cards[id].name;
+        this.descriptionTXT.text = cards[id].description;
+        this.damageTXT.text = cards[id].damage.ToString();
         this.image.sprite = cards[id].image;
         this.cardType = cards[id].cardType;
 
-        if (cardType == CardType.Sword || cardType == CardType.Shield ||cardType == CardType.Castle)
+        if (cardType == CardType.Sword || cardType == CardType.Shield || cardType == CardType.Castle)
         {
             switch (cardType)
             {
@@ -55,6 +47,16 @@ public class CardButton : MonoBehaviour
 
     public void OnClick()
     {
-        GameManager.ins.cardClose.InitCardClose(id);
+        GameManager.ins.cardClose.InitCardClose(id, gameObject);
+    }
+
+    public void UpdateDamage(int value)
+    {
+        if (value == 1)
+        {
+            damageTXT.text = value.ToString();
+        }
+        else
+            damageTXT.text = damage.ToString();
     }
 }

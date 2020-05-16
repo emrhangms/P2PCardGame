@@ -7,6 +7,7 @@ public class CardManager : MonoBehaviour
 {
     [Header("Active Cards")]
     public GameObject playerDeck;
+    public GameObject selectedCard;
     public List<GameObject> activeDeckCards = new List<GameObject>();
 
     public GameObject PrefCard;
@@ -32,10 +33,16 @@ public class CardManager : MonoBehaviour
 
             GameObject card = Instantiate(PrefCard, transform.position, Quaternion.identity, playerDeck.transform);
 
+            activeDeckCards.Add(card);
+
             card.GetComponent<CardButton>().InitCard(rand);
         }
     }
 
+    public void RemoveCard()
+    {
+
+    }
 }
 
 [System.Serializable]

@@ -1087,9 +1087,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  name: {fileID: 9144035984294252443}
-  description: {fileID: 1992798910284476120}
-  damage: {fileID: 5061803837925302594}
+  damage: 0
+  nameTXT: {fileID: 9144035984294252443}
+  descriptionTXT: {fileID: 1992798910284476120}
+  damageTXT: {fileID: 5061803837925302594}
   image: {fileID: 6559196451398718433}
   cardType: 0
   imageCardType:
