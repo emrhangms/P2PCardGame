@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using SimpleJSON;
+using BayatGames.Serialization.Formatters.Json;
 
 public class PlayerPanel : MonoBehaviour
 {
@@ -56,9 +57,9 @@ public class PlayerPanel : MonoBehaviour
         StartCoroutine(CreateRoomApi());
     }
 
-    public void JoinRoom()
+    public void JoinRoom(string roomID, string hostName)
     {
-        CanvasManager.ins.OpenPanel(PanelNames.LobbyPanel);
+        StartCoroutine(JoinRoomApi(roomID, hostName));
     }
 
     public void ExitGame()
@@ -79,8 +80,6 @@ public class PlayerPanel : MonoBehaviour
 
     IEnumerator GetRoomsApi()
     {
-        //Debug.Log("Get Rooms");
-
         string Url = $"http://134.122.95.112:3005/rooms";
         Uri uri = new Uri(Url);
 
@@ -95,7 +94,6 @@ public class PlayerPanel : MonoBehaviour
 
         JSONNode info = JSON.Parse(request.downloadHandler.text);
 
-
         for (int i = rooms.Count - 1; i >= 0; i--)
         {
             //Remove Rooms
@@ -108,11 +106,16 @@ public class PlayerPanel : MonoBehaviour
             //Add Rooms
             GameObject room = Instantiate(PrefRoom, roomParent.transform);
             room.GetComponent<PrefRoom>().SetName(info[i]["title"]);
+            room.GetComponent<PrefRoom>().SetHostName(info[i]["host"]);
+            room.GetComponent<PrefRoom>().SetID(info[i]["_id"]);
 
             if (info[i]["guest"] == "")
                 room.GetComponent<PrefRoom>().SetFillness("1");
             else
+            {
                 room.GetComponent<PrefRoom>().SetFillness("2");
+                room.GetComponent<Button>().interactable = false;
+            }
 
             rooms.Add(room);
         }
@@ -127,12 +130,9 @@ public class PlayerPanel : MonoBehaviour
         form.AddField("title", PlayerInfo.ins.playerName + "'ın Odası");
         form.AddField("host", PlayerInfo.ins.playerName);
         form.AddField("hostId", PlayerInfo.ins.PlayerId);
-        form.AddField("hostReady", "");
         form.AddField("status", "true");
         form.AddField("guest", "");
         form.AddField("guestId", "");
-        form.AddField("guestReady", "");
-
 
         UnityWebRequest postRequest = UnityWebRequest.Post(Url, form);
 
@@ -147,9 +147,42 @@ public class PlayerPanel : MonoBehaviour
         {
             Debug.Log("Room Created");
             PlayerInfo.ins.SetHost(true);
-            CanvasManager.ins.lobbyPanel.SetPlayers();
+            CanvasManager.ins.lobbyPanel.SetHost(PlayerInfo.ins.PlayerId);
             CanvasManager.ins.OpenPanel(PanelNames.LobbyPanel);
-            
         }
     }
+
+    IEnumerator JoinRoomApi(string roomID, string hostName)
+    {
+        string Url = $"http://134.122.95.112:3005/rooms/id={roomID}";
+
+        Guest guest = new Guest() { guest = PlayerInfo.ins.playerName, guestId = PlayerInfo.ins.PlayerId };
+        string reqMessage = JsonFormatter.SerializeObject(guest);
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(reqMessage);
+
+        UnityWebRequest updateRequest = new UnityWebRequest(Url, "PATCH");
+        updateRequest.SetRequestHeader("content-Type", "application/json");
+        updateRequest.method = "PATCH";
+        updateRequest.uploadHandler = (UploadHandler)new UploadHandlerRaw(bytes);
+
+        //Debug.Log("sadsada" + updateRequest.uploadedBytes);
+        yield return updateRequest.SendWebRequest();
+        if (updateRequest.isNetworkError || updateRequest.isHttpError)
+        {
+            Debug.Log(updateRequest.error);
+            yield break;
+        }
+        else
+        {
+            PlayerInfo.ins.SetHost(false);
+            CanvasManager.ins.lobbyPanel.SetGuest(roomID, hostName);
+            CanvasManager.ins.OpenPanel(PanelNames.LobbyPanel);
+        }
+    }
+}
+
+class Guest
+{
+    public string guest;
+    public string guestId;
 }

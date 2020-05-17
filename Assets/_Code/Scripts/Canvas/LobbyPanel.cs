@@ -4,35 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class LobbyPanel : MonoBehaviour
 {
+    public string hostId;
+
     [Header("Host")]
     public Text NameHost;
     public Button ReadyButton;
     public Text ReadyText;
     public Image ReadyButtonOverlay;
-    public bool ReadyHost;
+    public bool ReadyHost = false;
 
     [Header("Client")]
     public Text NameGuest;
     public Button ReadyButtonGuest;
     public Text ReadyTextGuest;
     public Image ReadyButtonOverlayGuest;
-    public bool ReadyGuest;
+    public bool ReadyGuest = false;
 
-    public void SetPlayers()
+    public void SetHost(string hostId)
     {
-        if (PlayerInfo.ins.isHost)
-        {
-            NameHost.text = PlayerInfo.ins.playerName;
-        }
-        else
-        {
-            Debug.Log("sa");
-            NameGuest.text = PlayerInfo.ins.playerName;
-            //TODO GUEST PLAYER GETS HOST NAME
-        }
+        NameHost.text = PlayerInfo.ins.playerName;
+    }
+
+    public void SetGuest(string hostId, string hostName)
+    {
+        NameGuest.text = PlayerInfo.ins.playerName;
+        NameHost.text = hostName;
+        this.hostId = hostId;
+    }
+
+    public void FindGuest()
+    {
+        StartCoroutine(FindGuestApi());
     }
 
     public void SetReady()
@@ -43,7 +49,7 @@ public class LobbyPanel : MonoBehaviour
             {
                 ReadyHost = false;
 
-                //TODO SET READY DATABASE
+                // SET READY DATABASE
 
                 ReadyButtonOverlay.color = Color.green;
 
@@ -63,7 +69,7 @@ public class LobbyPanel : MonoBehaviour
             {
                 ReadyHost = true;
 
-                //TODO SET NOT READY DATABASE
+                // SET NOT READY DATABASE
 
                 ReadyButtonOverlay.color = Color.red;
 
@@ -82,7 +88,46 @@ public class LobbyPanel : MonoBehaviour
         }
         else
         {
-            //TODO : GUEST READY
+            if (ReadyGuest)
+            {
+                ReadyGuest = false;
+
+                // SET READY DATABASE
+
+                ReadyButtonOverlay.color = Color.green;
+
+                var colors = ReadyButton.colors;
+
+                colors.normalColor = Color.green;
+                colors.highlightedColor = Color.green;
+                colors.pressedColor = Color.green;
+                colors.selectedColor = Color.green;
+                colors.disabledColor = Color.green;
+
+                ReadyText.text = "Hazır!";
+
+                ReadyButton.colors = colors;
+            }
+            else
+            {
+                ReadyGuest = true;
+
+                // SET NOT READY DATABASE
+
+                ReadyButtonOverlay.color = Color.red;
+
+                var colors = ReadyButton.colors;
+
+                colors.normalColor = Color.red;
+                colors.highlightedColor = Color.red;
+                colors.pressedColor = Color.red;
+                colors.selectedColor = Color.red;
+                colors.disabledColor = Color.red;
+
+                ReadyText.text = "Hazır Degil";
+
+                ReadyButton.colors = colors;
+            }
         }
     }
 
@@ -95,5 +140,13 @@ public class LobbyPanel : MonoBehaviour
             PlayerInfo.ins.isHost = false;
             CanvasManager.ins.OpenPanel(PanelNames.PlayerPanel);
         }
+    }
+
+
+    IEnumerator FindGuestApi()
+    {
+        //TODO Kullanıcı bulma kodu
+        UnityWebRequest updateRequest = new UnityWebRequest("asd", "PATCH");
+        yield return updateRequest.SendWebRequest();
     }
 }

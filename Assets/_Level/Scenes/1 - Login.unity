@@ -2523,6 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79ce4ea4ec9aad4b80aa86a306a1e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hostId: 
   NameHost: {fileID: 827061468}
   ReadyButton: {fileID: 1277253458}
   ReadyText: {fileID: 1633339601}
@@ -2541,7 +2542,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160164821}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -5347,7 +5348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12819085, g: 1, b: 0.09411764, a: 1}
+  m_Color: {r: 0.94509804, g: 0.25882354, b: 0.13725491, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12550,7 +12551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: hazir !
+  m_Text: hazir ol
 --- !u!222 &1139316946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13049,7 +13050,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1217261662}
   m_OnClick:
     m_PersistentCalls:
@@ -14280,7 +14281,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335822925}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -17088,7 +17089,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.94509804, g: 0.25882354, b: 0.13725491, a: 1}
     m_PressedColor: {r: 0.7764706, g: 0.2, b: 0.09411765, a: 1}
     m_SelectedColor: {r: 0.94509804, g: 0.25882354, b: 0.13725491, a: 1}
-    m_DisabledColor: {r: 0.12941177, g: 1, b: 0.09411765, a: 0.49803922}
+    m_DisabledColor: {r: 0.94509804, g: 0.25882354, b: 0.13725491, a: 0.49803922}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -17102,14 +17103,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1696291951}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenPanel
-        m_Mode: 3
+      - m_Target: {fileID: 160164823}
+        m_MethodName: SetReady
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

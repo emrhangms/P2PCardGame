@@ -7,6 +7,8 @@ public class PrefRoom : MonoBehaviour
 {
     [Header("Room Text")]
     public string id;
+    public string hostName;
+
     public Text roomName;
     public Text roomFillness;
 
@@ -15,9 +17,14 @@ public class PrefRoom : MonoBehaviour
         this.id = id;
     }
 
-    public void SetName(string name)
+    public void SetHostName(string name)
     {
-        roomName.text = name;
+        hostName = name;
+    }
+
+    public void SetName(string roomName)
+    {
+        this.roomName.text = roomName;
     }
 
     public void SetFillness(string fillness)
@@ -27,6 +34,6 @@ public class PrefRoom : MonoBehaviour
 
     public void OnClick()
     {
-        PlayerPanel.ins.JoinRoom();
+        PlayerPanel.ins.JoinRoom(id, hostName);
     }
 }

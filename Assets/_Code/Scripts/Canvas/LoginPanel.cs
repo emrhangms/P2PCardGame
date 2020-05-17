@@ -55,9 +55,7 @@ public class LoginPanel : MonoBehaviour
     }
     public void CreateAccount()
     {
-        //TODO PLAYER YARATMA İŞLEMLERİ
         StartCoroutine(PostApi());
-        OpenPanel(0);
     }
 
     IEnumerator GetApi(string uname, string password)
@@ -103,6 +101,8 @@ public class LoginPanel : MonoBehaviour
             yield break;
         }
         else
-            Debug.Log("Oyuncu Yaratıldı");
+        {
+            OpenPanel(0);
+        }
     }
 }
