@@ -5992,8 +5992,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1335822928}
-        m_MethodName: OpenPanel
-        m_Mode: 3
+        m_MethodName: CreateAccount
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10554,7 +10554,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 157197571}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.4739641
+  m_Size: 0.4766076
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12292,7 +12292,7 @@ PrefabInstance:
     - target: {fileID: 114563160150678326, guid: 321a41142c2370f43900f081f5bc5615,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CreateAccount
+      value: OpenCreateAccountPanel
       objectReference: {fileID: 0}
     - target: {fileID: 114563160150678326, guid: 321a41142c2370f43900f081f5bc5615,
         type: 3}
@@ -22405,6 +22405,11 @@ MonoBehaviour:
   panels:
   - {fileID: 2084648832}
   - {fileID: 1360975047}
+  userNameLogin: {fileID: 975722877}
+  userNamePassword: {fileID: 1984068176}
+  signUserName: {fileID: 1275857456}
+  signPassword: {fileID: 1572717454}
+  signEmail: {fileID: 286913317}
 --- !u!1 &1336783767
 GameObject:
   m_ObjectHideFlags: 0
