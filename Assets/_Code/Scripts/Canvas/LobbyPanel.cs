@@ -7,44 +7,92 @@ using UnityEngine.UI;
 
 public class LobbyPanel : MonoBehaviour
 {
-
+    [Header("Host")]
+    public Text NameHost;
     public Button ReadyButton;
     public Text ReadyText;
     public Image ReadyButtonOverlay;
+    public bool ReadyHost;
 
-    void Start()
+    [Header("Client")]
+    public Text NameGuest;
+    public Button ReadyButtonGuest;
+    public Text ReadyTextGuest;
+    public Image ReadyButtonOverlayGuest;
+    public bool ReadyGuest;
+
+    public void SetPlayers()
     {
-
+        if (PlayerInfo.ins.isHost)
+        {
+            NameHost.text = PlayerInfo.ins.playerName;
+        }
+        else
+        {
+            NameGuest.text = PlayerInfo.ins.playerName;
+            //TODO GUEST PLAYER GETS HOST NAME
+        }
     }
 
     public void SetReady()
     {
-        //TODO SETREADY
+        if (PlayerInfo.ins.isHost)
+        {
+            if (ReadyHost)
+            {
+                ReadyHost = false;
 
-        ReadyButtonOverlay.color = Color.green;
+                //TODO SET READY DATABASE
 
-        var colors = ReadyButton.colors;
+                ReadyButtonOverlay.color = Color.green;
 
-        colors.normalColor = Color.green;
-        colors.highlightedColor = Color.green;
-        colors.pressedColor = Color.green;
-        colors.selectedColor = Color.green;
-        colors.disabledColor = Color.green;
+                var colors = ReadyButton.colors;
 
-        ReadyText.text = "Hazır!";
+                colors.normalColor = Color.green;
+                colors.highlightedColor = Color.green;
+                colors.pressedColor = Color.green;
+                colors.selectedColor = Color.green;
+                colors.disabledColor = Color.green;
 
-        ReadyButton.colors = colors;
+                ReadyText.text = "Hazır!";
+
+                ReadyButton.colors = colors;
+            }
+            else
+            {
+                ReadyHost = true;
+
+                //TODO SET NOT READY DATABASE
+
+                ReadyButtonOverlay.color = Color.red;
+
+                var colors = ReadyButton.colors;
+
+                colors.normalColor = Color.red;
+                colors.highlightedColor = Color.red;
+                colors.pressedColor = Color.red;
+                colors.selectedColor = Color.red;
+                colors.disabledColor = Color.red;
+
+                ReadyText.text = "Hazır Degil";
+
+                ReadyButton.colors = colors;
+            }
+        }
+        else
+        {
+            //TODO : GUEST READY
+        }
     }
 
     public void ExitLobby()
     {
         //TODO EXİT LOBBY
-        CanvasManager.ins.OpenPanel(PanelNames.PlayerPanel);
+        if (PlayerInfo.ins.isHost)
+        {
+            //TODO DELETE ROOM
+            PlayerInfo.ins.isHost = false;
+            CanvasManager.ins.OpenPanel(PanelNames.PlayerPanel);
+        }
     }
-
-    void Update()
-    {
-
-    }
-
 }

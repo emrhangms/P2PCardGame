@@ -8,6 +8,12 @@ public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager ins;
 
+    public LoginPanel loginPanel;
+
+    public PlayerPanel playerPanel;
+
+    public LobbyPanel lobbyPanel;
+
     public List<CanvasGroup> panels = new List<CanvasGroup>();
 
     private void Awake() => ins = this;
