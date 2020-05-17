@@ -9903,7 +9903,7 @@ MonoBehaviour:
   playerName: 
   playerPassword: 
   playerEmail: 
-  host: 0
+  isHost: 0
 --- !u!1 &882832900
 GameObject:
   m_ObjectHideFlags: 0
@@ -12459,6 +12459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff677da54f47204cab9162448ebe61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginPanel: {fileID: 1335822928}
+  playerPanel: {fileID: 2108264696}
+  lobbyPanel: {fileID: 160164823}
   panels:
   - {fileID: 1335822927}
   - {fileID: 2108264695}
@@ -20790,6 +20793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ed7a020de6c6c4dbec36bb9bad64e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNameTXT: {fileID: 984118024}
   panels:
   - {fileID: 116095669}
   - {fileID: 34501141}
