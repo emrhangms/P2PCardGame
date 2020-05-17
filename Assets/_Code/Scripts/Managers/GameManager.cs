@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     public ReceiverManager receiverManager;
 
+    [Header("Panels")]
+    public CanvasGroup winPanel;
+    public CanvasGroup losePanel;
+
+    [Header("Passed")]
     public bool Passed_P1 = false;
     public bool Passed_P2 = false;
 
@@ -27,47 +34,46 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cardManager.CreateCards(8);
-        //TODO : SET NAMES
         playerManager.SetNames();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            receiverManager.GetID(0);
+            CheckBothPassed();
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            int rand = Random.Range(1, cardManager.cards.Count);
+            receiverManager.GetID(rand);
+        }
     }
 
     public void CalculateResult()
     {
         boardManager.CalculateOvarall();
+
         if (boardManager.damagePlayer_1 > boardManager.damagePlayer_2)
         {
             playerManager.player_2.GetDamage();
 
-            if (playerManager.player_2.life == 0)
-            {
-                Win();
-            }
-            else
-            {
-                Debug.Log("WIN ROUND");
-                //TODO : WIN ROUND
-            }
+            Win();
         }
         else
         {
             playerManager.player_1.GetDamage();
 
-            if (playerManager.player_1.life == 0)
-            {
-                Lose();
-            }
-            else
-            {
-                Debug.Log("LOSE ROUND");
-                //TODO : LOSE ROUND
-            }
+            Lose();
         }
-
-        RemoveAllCards();
+        
+        cardManager.CreateCards(3);
+        RemoveAllCardsAndWeatherEffects();
         ResetPassed();
     }
 
-    public void RemoveAllCards()
+    public void RemoveAllCardsAndWeatherEffects()
     {
         boardManager.swordP_1.RemoveCards();
         boardManager.swordP_2.RemoveCards();
@@ -77,6 +83,9 @@ public class GameManager : MonoBehaviour
 
         boardManager.castleP_1.RemoveCards();
         boardManager.castleP_2.RemoveCards();
+
+        boardManager.weather.RemoveCards();
+
         boardManager.RemoveAllWeatherEffects();
     }
 
@@ -88,14 +97,33 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        Debug.Log("YOU WIN");
-        //TODO : Exit
+        winPanel.DOFade(1, 0.3f);
+        winPanel.interactable = true;
+        winPanel.blocksRaycasts = true;
     }
 
     public void Lose()
     {
-        Debug.Log("YOU LOSE");
-        //TODO : Exit
+        losePanel.DOFade(1, 0.3f);
+        losePanel.interactable = true;
+        losePanel.blocksRaycasts = true;
+    }
+
+    public void CheckIsOver()
+    {
+        if (playerManager.player_1.life == 0 || playerManager.player_2.life == 0)
+        {
+            SceneManager.LoadScene("1 - Login");
+        }
+    }
+
+    public void CheckBothPassed()
+    {
+        if (Passed_P1 == Passed_P2)
+        {
+            CalculateResult();
+            receiverManager.SendID(0);
+        }
     }
 
 }

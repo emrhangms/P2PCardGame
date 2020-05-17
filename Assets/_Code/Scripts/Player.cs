@@ -14,10 +14,9 @@ public class Player : MonoBehaviour
     public Image lifeImg_1;
     public Image lifeImg_2;
 
-
     public void SetName()
     {
-
+        //TODO : SET NAMES
     }
 
     public void GetDamage()

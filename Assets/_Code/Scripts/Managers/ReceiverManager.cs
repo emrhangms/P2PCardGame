@@ -5,23 +5,6 @@ using UnityEngine;
 public class ReceiverManager : MonoBehaviour
 {
 
-    void Start()
-    {
-        GetID(2);
-        GetID(2);
-        GetID(4);
-        GetID(5);
-        GetID(3);
-        GetID(3);
-
-        GetID(0);
-    }
-
-    void Update()
-    {
-
-    }
-
     public void GetID(int id)
     {
         if (id == 0)
@@ -31,7 +14,7 @@ public class ReceiverManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("CARD ID : " + id);
+            //Debug.Log("CARD ID : " + id);
             CardContainer container = GameManager.ins.boardManager.GetCardContainer(id, 1);
             GameManager.ins.boardManager.CreateCard(container, id);
         }

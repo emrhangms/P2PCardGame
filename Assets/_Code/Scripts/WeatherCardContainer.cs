@@ -21,5 +21,5 @@ public class WeatherCardContainer : CardContainer
     {
         GameManager.ins.boardManager.ChangeWeather(cardType);
     }
-
+   
 }

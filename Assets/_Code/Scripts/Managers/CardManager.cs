@@ -29,7 +29,7 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < value; i++)
         {
-            int rand = Random.Range(0, cards.Count);
+            int rand = Random.Range(1, cards.Count);
 
             GameObject card = Instantiate(PrefCard, transform.position, Quaternion.identity, playerDeck.transform);
 
