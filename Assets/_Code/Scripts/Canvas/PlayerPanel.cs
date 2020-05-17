@@ -54,8 +54,6 @@ public class PlayerPanel : MonoBehaviour
     public void CreateRoom()
     {
         StartCoroutine(CreateRoomApi());
-        CanvasManager.ins.lobbyPanel.SetPlayers();
-        CanvasManager.ins.OpenPanel(PanelNames.LobbyPanel);
     }
 
     public void JoinRoom()
@@ -147,8 +145,11 @@ public class PlayerPanel : MonoBehaviour
         }
         else
         {
-            PlayerInfo.ins.SetHost(true);
             Debug.Log("Room Created");
+            PlayerInfo.ins.SetHost(true);
+            CanvasManager.ins.lobbyPanel.SetPlayers();
+            CanvasManager.ins.OpenPanel(PanelNames.LobbyPanel);
+            
         }
     }
 }

@@ -2528,10 +2528,10 @@ MonoBehaviour:
   ReadyText: {fileID: 1633339601}
   ReadyButtonOverlay: {fileID: 321350410}
   ReadyHost: 0
-  NameGuest: {fileID: 0}
-  ReadyButtonGuest: {fileID: 0}
-  ReadyTextGuest: {fileID: 0}
-  ReadyButtonOverlayGuest: {fileID: 0}
+  NameGuest: {fileID: 665023656}
+  ReadyButtonGuest: {fileID: 1696291953}
+  ReadyTextGuest: {fileID: 1139316945}
+  ReadyButtonOverlayGuest: {fileID: 355247102}
   ReadyGuest: 0
 --- !u!225 &160164824
 CanvasGroup:
@@ -2541,7 +2541,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160164821}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -14280,7 +14280,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335822925}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

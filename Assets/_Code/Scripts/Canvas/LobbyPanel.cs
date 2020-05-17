@@ -29,6 +29,7 @@ public class LobbyPanel : MonoBehaviour
         }
         else
         {
+            Debug.Log("sa");
             NameGuest.text = PlayerInfo.ins.playerName;
             //TODO GUEST PLAYER GETS HOST NAME
         }
