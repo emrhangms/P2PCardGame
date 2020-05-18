@@ -2523,7 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79ce4ea4ec9aad4b80aa86a306a1e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostId: 
+  roomId: 
   NameHost: {fileID: 827061468}
   ReadyButton: {fileID: 1277253458}
   ReadyText: {fileID: 1633339601}
@@ -2542,7 +2542,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160164821}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -20778,7 +20778,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108264693}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -20802,6 +20802,7 @@ MonoBehaviour:
     type: 3}
   roomParent: {fileID: 1938440718}
   rooms: []
+  client: {fileID: 8715560657482872044, guid: af522c25849ceed42a4035a04ac684c0, type: 3}
 --- !u!1 &2116927907
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,10 +5,11 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using SimpleJSON;
 
 public class LobbyPanel : MonoBehaviour
 {
-    public string hostId;
+    public string roomId;
 
     [Header("Host")]
     public Text NameHost;
@@ -24,16 +25,17 @@ public class LobbyPanel : MonoBehaviour
     public Image ReadyButtonOverlayGuest;
     public bool ReadyGuest = false;
 
-    public void SetHost(string hostId)
+    public void SetHost(string roomId)
     {
         NameHost.text = PlayerInfo.ins.playerName;
+        this.roomId = roomId;
     }
 
-    public void SetGuest(string hostId, string hostName)
+    public void SetGuest(string roomId, string hostName)
     {
         NameGuest.text = PlayerInfo.ins.playerName;
         NameHost.text = hostName;
-        this.hostId = hostId;
+        this.roomId = roomId;
     }
 
     public void FindGuest()
@@ -145,8 +147,15 @@ public class LobbyPanel : MonoBehaviour
 
     IEnumerator FindGuestApi()
     {
-        //TODO Kullanıcı bulma kodu
-        UnityWebRequest updateRequest = new UnityWebRequest("asd", "PATCH");
-        yield return updateRequest.SendWebRequest();
+        Debug.Log("Courtin başladı ");
+        string Url = $"134.122.95.112:3005/rooms/id={roomId}";
+        UnityWebRequest request = UnityWebRequest.Get(Url);
+        yield return request.SendWebRequest();
+        if (request.isNetworkError || request.isHttpError)
+        {
+            Debug.Log(request.error);
+            yield break;
+        }
+        JSONNode info = JSON.Parse(request.downloadHandler.text);
     }
 }
