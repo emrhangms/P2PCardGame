@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class Client : MonoBehaviour
     }
 
     public static Client ins;
+    public static Process myProcess;
     string clientPath= "C:\\Users\\Serhad\\Desktop\\Commands";
     // Start is called before the first frame update
     void Start()
@@ -23,8 +25,31 @@ public class Client : MonoBehaviour
         fileWatch.Path = Path.Combine(clientPath, "ToUnity");
         fileWatch.Created += onCreated;
         fileWatch.EnableRaisingEvents = true;
+        //Exe();
+      
     }
-
+    void Exe()
+    {
+        try
+        {
+            myProcess = new Process();
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            myProcess.StartInfo.CreateNoWindow = true;
+            myProcess.StartInfo.UseShellExecute = false;
+            myProcess.StartInfo.FileName = "C:\\Users\\Serhad\\source\\repos\\Client\\Client\\bin\\Debug\\Client.exe";
+            myProcess.StartInfo.Arguments = "";
+            myProcess.EnableRaisingEvents = true;
+            int ExitCode = myProcess.ExitCode;
+            myProcess.Start();
+            myProcess.WaitForExit();
+        }
+        catch (Exception e)
+        {
+            // Exe açılamadıysa online olarak hiçbir şey çalışmaz. Offline olduğumuzu belli ederek oyunu offline açabiliriz
+            // veya adamın bağlan demesi ve online servislerine bağlanması gerekiyor.
+            UnityEngine.Debug.Log("exception while opening exe");
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -66,6 +91,7 @@ public class Client : MonoBehaviour
                 {
                     string reqMessage = JsonUtility.ToJson(request);
                     file.Write(reqMessage);
+                    UnityEngine.Debug.Log("Request gönderildi "+ reqMessage);
                 }
             }
             catch (Exception)
@@ -76,7 +102,7 @@ public class Client : MonoBehaviour
         else
         {
             File.Delete(filePath);
-            UnityEngine.Debug.Log("Böyle bir file olmamalı .exe alamamış bunu ");
+            UnityEngine.Debug.Log("Böyle bir file olmamalı .exe alamamış bunu "+filePath);
         }
 
     }

@@ -9,6 +9,7 @@ using SimpleJSON;
 using BayatGames.Serialization.Formatters.Json;
 using System.Diagnostics;
 using Models;
+using System.Threading;
 
 public class PlayerPanel : MonoBehaviour
 {
@@ -125,7 +126,9 @@ public class PlayerPanel : MonoBehaviour
 
     IEnumerator CreateRoomApi()
     {
-        StartClient();
+       // StartClient();
+        Thread.Sleep(100);
+
         string Url = "http://134.122.95.112:3005/rooms";
 
         WWWForm form = new WWWForm();
@@ -140,6 +143,7 @@ public class PlayerPanel : MonoBehaviour
         UnityWebRequest postRequest = UnityWebRequest.Post(Url, form);
 
         yield return postRequest.SendWebRequest();
+        JSONNode info = JSON.Parse(postRequest.downloadHandler.text);
 
         if (postRequest.isNetworkError || postRequest.isHttpError)
         {
@@ -148,11 +152,12 @@ public class PlayerPanel : MonoBehaviour
         }
         else
         {
+            UnityEngine.Debug.Log("dasasdasdsad" + info["_id"]);
             // Request gönderme yeni sistem
-            Request request = new Request() { Action = "CreateRoom", User = PlayerInfo.ins.PlayerId, Payload = "" };
+            Request request = new Request() { Action = "CreateGameLobby", User = PlayerInfo.ins.PlayerId, Payload = info["_id"]};
             Client.ins.SendRequest(request);
 
-            UnityEngine.Debug.Log("Room Created");
+            UnityEngine.Debug.Log("Room Created"); 
             PlayerInfo.ins.SetHost(true);
             CanvasManager.ins.lobbyPanel.SetHost(PlayerInfo.ins.PlayerId);
             CanvasManager.ins.OpenPanel(PanelNames.LobbyPanel);
@@ -161,7 +166,8 @@ public class PlayerPanel : MonoBehaviour
 
     IEnumerator JoinRoomApi(string roomID, string hostName)
     {
-        StartClient();
+        //StartClient();
+        Thread.Sleep(100);
         string Url = $"http://134.122.95.112:3005/rooms/id={roomID}";
 
         Guest guest = new Guest() { guest = PlayerInfo.ins.playerName, guestId = PlayerInfo.ins.PlayerId };
@@ -175,6 +181,8 @@ public class PlayerPanel : MonoBehaviour
 
         //Debug.Log("sadsada" + updateRequest.uploadedBytes);
         yield return updateRequest.SendWebRequest();
+        
+
         if (updateRequest.isNetworkError || updateRequest.isHttpError)
         {
             UnityEngine.Debug.Log(updateRequest.error);
@@ -183,7 +191,7 @@ public class PlayerPanel : MonoBehaviour
         else
         {
             // Request gönderme yeni sistem
-            Request request = new Request() {Action = "JoinRoom",User=PlayerInfo.ins.PlayerId ,Payload=""};
+            Request request = new Request() {Action = "JoinGameLobby",User=PlayerInfo.ins.PlayerId ,Payload = roomID };
             Client.ins.SendRequest(request);
 
             PlayerInfo.ins.SetHost(false);
@@ -196,25 +204,6 @@ public class PlayerPanel : MonoBehaviour
     {
         // ToDO burası taşınabilir.
         Instantiate(client);
-        //try
-        //{
-        //    Process myProcess = new Process();
-        //    myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        //    myProcess.StartInfo.CreateNoWindow = true;
-        //    myProcess.StartInfo.UseShellExecute = false;
-        //    myProcess.StartInfo.FileName = "C:\\Users\\Serhad\\Desktop\\Client.exe";
-        //    myProcess.StartInfo.Arguments = "";
-        //    myProcess.EnableRaisingEvents = true;
-        //    myProcess.Start();
-        //    myProcess.WaitForExit();
-        //    int ExitCode = myProcess.ExitCode;
-        //}
-        //catch (Exception e)
-        //{
-        //    // Exe açılamadıysa online olarak hiçbir şey çalışmaz. Offline olduğumuzu belli ederek oyunu offline açabiliriz
-        //    // veya adamın bağlan demesi ve online servislerine bağlanması gerekiyor.
-        //    UnityEngine.Debug.Log("exception while opening exe");
-        //}
     }
 }
 
