@@ -20,7 +20,7 @@ public class CanvasManager : MonoBehaviour
 
     void Start()
     {
-        OpenPanel(PanelNames.LoginPanel);
+        OpenPanel(PanelNames.PlayerPanel);
     }
 
     public void OpenPanel(PanelNames panelName)

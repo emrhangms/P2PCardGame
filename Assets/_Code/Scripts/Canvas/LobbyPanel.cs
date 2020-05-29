@@ -6,7 +6,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using SimpleJSON;
-
+using UnityEngine.SceneManagement;
 public class LobbyPanel : MonoBehaviour
 {
     public string roomId;
@@ -131,6 +131,12 @@ public class LobbyPanel : MonoBehaviour
                 ReadyButton.colors = colors;
             }
         }
+    }
+
+
+    public void OpenSceneGame() 
+    {
+        SceneManager.LoadScene("2 - InGame");
     }
 
     public void ExitLobby()

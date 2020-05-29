@@ -16,7 +16,7 @@ public class Client : MonoBehaviour
 
     public static Client ins;
     public static Process myProcess;
-    string clientPath= "C:\\Users\\Serhad\\Desktop\\Commands";
+    string clientPath= "C:\\Users\\EmirhanGumus\\Desktop\\Commands";
     // Start is called before the first frame update
     void Start()
     {

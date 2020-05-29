@@ -2047,7 +2047,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "SERHAD \u015EENCAN"
+  m_Text: newbie
 --- !u!222 &309589479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6194,7 +6194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Emirhangms
+  m_Text: emirhangms
 --- !u!222 &978865601
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10914,60 +10914,170 @@ MonoBehaviour:
     damage: 0
     image: {fileID: 0}
     cardType: 0
-  - name: "Baht\u0131 Sikik Serhad"
+  - name: 'Titania '
     description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
       a mauris. Suspendisse eget accumsan leo. Morbi quis '
-    damage: 5
+    damage: 3
     image: {fileID: 21300000, guid: 8f14140099d354d868c3e876b88ac6e6, type: 3}
     cardType: 0
-  - name: "Baht\u0131 Sikik Emirhan"
+  - name: 'Timandra '
     description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
       a mauris. Suspendisse eget accumsan leo. Morbi quis '
-    damage: 5
-    image: {fileID: 21300000, guid: 7119e0c931ca44f1286995d8ef17567a, type: 3}
-    cardType: 0
-  - name: Deli
-    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
-      a mauris. Suspendisse eget accumsan leo. Morbi quis '
-    damage: 5
-    image: {fileID: 21300000, guid: 02814e1d583284b1c98ea9c2de7e3b8a, type: 3}
-    cardType: 2
-  - name: zctg
-    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
-      a mauris. Suspendisse eget accumsan leo. Morbi quis '
-    damage: 5
-    image: {fileID: 21300000, guid: a9bdfef64fe9e45af8239d28118214af, type: 3}
+    damage: 2
+    image: {fileID: 21300000, guid: 5037805867c8f4437bda383a6b626131, type: 3}
     cardType: 1
-  - name: cbgw
+  - name: Sampson
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 2
+    image: {fileID: 21300000, guid: f605586cff8694ef7b312b353f40b18b, type: 3}
+    cardType: 2
+  - name: 'Tamora '
     description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
       a mauris. Suspendisse eget accumsan leo. Morbi quis '
     damage: 5
+    image: {fileID: 21300000, guid: 44c008ad9d5dd43bdbefebbdf1c4a7ee, type: 3}
+    cardType: 1
+  - name: Timon
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 7
+    image: {fileID: 21300000, guid: 75b1305da5dfe4584b32aff31f0645a1, type: 3}
+    cardType: 2
+  - name: Sero
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 8
+    image: {fileID: 21300000, guid: 5760825019093431eb66558068060ce8, type: 3}
+    cardType: 2
+  - name: Merv
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: 02fe1a964a7a84ec6b6dffdd5930ee7f, type: 3}
+    cardType: 1
+  - name: Marrero
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 3
+    image: {fileID: 21300000, guid: 729e02cbb829e4f3fa78c39c5dbe0faa, type: 3}
+    cardType: 0
+  - name: Talla
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 3
+    image: {fileID: 21300000, guid: 82e23826ecc574aedb353c44c2b1ff36, type: 3}
+    cardType: 0
+  - name: ' M-iryan '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 6
+    image: {fileID: 21300000, guid: 7119e0c931ca44f1286995d8ef17567a, type: 3}
+    cardType: 2
+  - name: Haso
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 5
+    image: {fileID: 21300000, guid: b86dd63ed1491478fb92fbc0f8472030, type: 3}
+    cardType: 2
+  - name: Arevalo
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: dd11c56497b854fe99dcdc1c0574571d, type: 3}
+    cardType: 1
+  - name: Marrero
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: 02814e1d583284b1c98ea9c2de7e3b8a, type: 3}
+    cardType: 0
+  - name: 'Ngo '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 6
     image: {fileID: 21300000, guid: 888340c87142447ccaddbac84c649f9d, type: 3}
     cardType: 2
-  - name: SNOW
+  - name: Topias
     description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
       a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 3
+    image: {fileID: 21300000, guid: 8d86810ff08e1435ea0a7c6c87946529, type: 3}
+    cardType: 2
+  - name: 'Escobedo '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: abb5d6f5465f947148b4c98907370e3b, type: 3}
+    cardType: 1
+  - name: 'Thea '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: b916056121fbc47f28e9f686d245cf14, type: 3}
+    cardType: 0
+  - name: 'Tessa '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 6
+    image: {fileID: 21300000, guid: 131b1052ec5e74b50ad690bc9041ba09, type: 3}
+    cardType: 2
+  - name: 'Yaztromo '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 8
+    image: {fileID: 21300000, guid: ed997488ce6c7446cac258ccd66cdba7, type: 3}
+    cardType: 1
+  - name: 'Arthur '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: a9e8451a0693e43389d756b521be1e9c, type: 3}
+    cardType: 1
+  - name: 'Kenneth '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 4
+    image: {fileID: 21300000, guid: effa1e5956f92417a8bdcf8cffd51ef6, type: 3}
+    cardType: 0
+  - name: Sherry
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 6
+    image: {fileID: 21300000, guid: 832638ac86b8d4215904822157e803d0, type: 3}
+    cardType: 2
+  - name: 'Arnold '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 6
+    image: {fileID: 21300000, guid: 75b1305da5dfe4584b32aff31f0645a1, type: 3}
+    cardType: 1
+  - name: 'Kourosh '
+    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
+      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+    damage: 3
+    image: {fileID: 21300000, guid: 1e1a45e608dba4d1294948379b8cea20, type: 3}
+    cardType: 0
+  - name: Kar
+    description: Donma
     damage: 0
     image: {fileID: 21300000, guid: 127a73aae144d8b4b9266d40c17912cc, type: 3}
     cardType: 3
-  - name: RAIN
-    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
-      a mauris. Suspendisse eget accumsan leo. Morbi quis '
-    damage: 0
-    image: {fileID: 21300000, guid: 241de5aedb1007c4c83ee1d38133dea3, type: 3}
-    cardType: 5
-  - name: FOG
-    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
-      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+  - name: Sis
+    description: Goremiyorum
     damage: 0
     image: {fileID: 21300000, guid: b8f0818508c32a44d829460c6eaf7777, type: 3}
     cardType: 4
-  - name: SUNNY
-    description: 'fringilla. Duis massa odio, tristique eu eleifend id, tincidunt
-      a mauris. Suspendisse eget accumsan leo. Morbi quis '
+  - name: Gunes
+    description: Yaz geldi
     damage: 0
     image: {fileID: 21300000, guid: 735deb1d753f1b340833443686deb837, type: 3}
     cardType: 6
+  - name: Yagmur
+    description: Her sey kaygan
+    damage: 0
+    image: {fileID: 21300000, guid: 241de5aedb1007c4c83ee1d38133dea3, type: 3}
+    cardType: 5
 --- !u!1 &1723014361
 GameObject:
   m_ObjectHideFlags: 0
